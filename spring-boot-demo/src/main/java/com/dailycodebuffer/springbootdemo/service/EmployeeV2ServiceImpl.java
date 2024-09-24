@@ -17,28 +17,32 @@ public class EmployeeV2ServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    /**
+     * 
+     */
     @Override
     public Employee save(Employee employee) {
 
-        if(employee.getEmployeeId() == null ||
+        if (employee.getEmployeeId() == null ||
                 employee.getEmailId().isEmpty()) {
             employee.setEmployeeId(UUID.randomUUID().toString());
         }
 
         EmployeeEntity entity = new EmployeeEntity();
-        BeanUtils.copyProperties(employee,entity);
+        BeanUtils.copyProperties(employee, entity);
         employeeRepository.save(entity);
 
         return employee;
     }
 
     @Override
+    /**
+     * 
+     */
     public List<Employee> getAllEmployees() {
-        List<EmployeeEntity> employeeEntityList
-                = employeeRepository.findAll();
+        List<EmployeeEntity> employeeEntityList = employeeRepository.findAll();
 
-        List<Employee> employees
-                = employeeEntityList
+        List<Employee> employees = employeeEntityList
                 .stream()
                 .map(employeeEntity -> {
                     Employee employee = new Employee();
@@ -52,16 +56,15 @@ public class EmployeeV2ServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(String id) {
-        EmployeeEntity employeeEntity
-                = employeeRepository.findById(id).get();
+        EmployeeEntity employeeEntity = employeeRepository.findById(id).get();
         Employee employee = new Employee();
-        BeanUtils.copyProperties(employeeEntity,employee);
+        BeanUtils.copyProperties(employeeEntity, employee);
         return employee;
     }
 
     @Override
     public String deleteEmployeeById(String id) {
-        employeeRepository.deleteById(id);
+        this.employeeRepository.deleteById(id);
         return "Employee deleted with the id: " + id;
     }
 }

@@ -3,11 +3,13 @@ package com.dailycodebuffer.springbootdemo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"department"})
+@JsonIgnoreProperties({ "department" })
 public class Employee {
 
     private String employeeId;
     private String firstName;
+    private String lastName;
+    private String emailId;
 
     public String getEmployeeId() {
         return employeeId;
@@ -49,9 +51,6 @@ public class Employee {
         this.department = department;
     }
 
-    private String lastName;
-    private String emailId;
-
-   // @JsonIgnore
+    // @JsonIgnore
     private String department;
 }
