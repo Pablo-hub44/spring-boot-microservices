@@ -30,7 +30,7 @@ public class EmployeeV2ServiceImpl implements EmployeeService {
 
         EmployeeEntity entity = new EmployeeEntity();
         BeanUtils.copyProperties(employee, entity);
-        employeeRepository.save(entity);
+        this.employeeRepository.save(entity);
 
         return employee;
     }
@@ -40,7 +40,7 @@ public class EmployeeV2ServiceImpl implements EmployeeService {
      * 
      */
     public List<Employee> getAllEmployees() {
-        List<EmployeeEntity> employeeEntityList = employeeRepository.findAll();
+        List<EmployeeEntity> employeeEntityList = this.employeeRepository.findAll();
 
         List<Employee> employees = employeeEntityList
                 .stream()
@@ -56,7 +56,7 @@ public class EmployeeV2ServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(String id) {
-        EmployeeEntity employeeEntity = employeeRepository.findById(id).get();
+        EmployeeEntity employeeEntity = this.employeeRepository.findById(id).get();
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeEntity, employee);
         return employee;
@@ -67,4 +67,10 @@ public class EmployeeV2ServiceImpl implements EmployeeService {
         this.employeeRepository.deleteById(id);
         return "Employee deleted with the id: " + id;
     }
+
+    @Override
+    public Employee getEmployeeByName(String name) {
+        return this.employeeRepository.findByFirstName(name);
+    }
+
 }

@@ -3,6 +3,10 @@ package com.dailycodebuffer.springbootdemo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * anotaracion para poder ignorar una propiedad cuando ocupemos traer datos por
+ * esta clase Employee no regresara department
+ */
 @JsonIgnoreProperties({ "department" })
 public class Employee {
 
@@ -10,6 +14,8 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String emailId;
+    // @JsonIgnore --otra manera
+    private String department;
 
     public String getEmployeeId() {
         return employeeId;
@@ -51,6 +57,4 @@ public class Employee {
         this.department = department;
     }
 
-    // @JsonIgnore
-    private String department;
 }

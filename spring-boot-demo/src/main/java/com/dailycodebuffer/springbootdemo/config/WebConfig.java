@@ -5,7 +5,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration // oara q sepa q esta es una es una clase de configuración de Spring.
+/**
+ * para q sepa q esta es una es una clase de configuración de Spring.
+ */
+@Configuration
 public class WebConfig implements WebMvcConfigurer {
     // Al implementar la interfaz WebMvcConfigurer, la clase WebConfig puede
     // sobrescribir métodos que permiten personalizar o configurar el comportamiento

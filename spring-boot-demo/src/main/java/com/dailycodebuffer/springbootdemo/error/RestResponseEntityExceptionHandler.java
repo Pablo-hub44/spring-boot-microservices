@@ -8,18 +8,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+//anotacion q significa que sera comprtido a muchos controllers
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler
         extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(EmployeeNotFoundException.class)
+    /**
+     * employeeNotFoundHandler manejador cuando no se encuentre el empleado
+     * 
+     * @param exception
+     * @return ErrorMessage
+     */
+    @ExceptionHandler(EmployeeNotFoundException.class) // la clase de excepsion
     @ResponseBody
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.NOT_FOUND) // por default sea not found
     public ErrorMessage employeeNotFoundHandler(EmployeeNotFoundException exception) {
         ErrorMessage message = new ErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
         return message;
     }
 
+    /**
+     * genericExceptionHandler manejador de excepcion generico
+     * 
+     * @param exception
+     * @return ErrorMessage
+     */
     @ExceptionHandler(Exception.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

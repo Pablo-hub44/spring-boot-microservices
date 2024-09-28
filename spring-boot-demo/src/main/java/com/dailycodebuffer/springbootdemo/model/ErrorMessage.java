@@ -4,9 +4,10 @@ import org.springframework.http.HttpStatus;
 
 public class ErrorMessage {
 
-    private HttpStatus status;
-    private String message;
+    private HttpStatus status;// para el status del http
+    private String message;// el mensaje
 
+    // setters y getters
     public HttpStatus getStatus() {
         return status;
     }
